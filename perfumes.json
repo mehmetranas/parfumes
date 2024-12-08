@@ -20,5 +20,27 @@
         "feeling": "💃 Enerji dolu, tropikal ve zarif",
         "date": "2024-12-01",
         "age_group": "20-35"
+    },
+    {
+        "id": "shaik-classic",
+        "name": "Opulent Shaik Classic No. 77 🕴️",
+        "notes": "Bergamot, Fesleğen, Lavanta, Limon, Elma, Karanfil, Tarçın, Laden Çiçeği, Meşe Likeni, Sedir, Tibet Misk Geyiği, Vanilya",
+        "time": "🌆 Serin sonbahar ve kış akşamları",
+        "occasion": "✨ Özel davetler, resmi etkinlikler",
+        "users": "🧑‍🤝‍🧑 Erkekler",
+        "feeling": "🌟 Zengin, sofistike ve karizmatik",
+        "date": "2024-12-08",
+        "age_group": "30-50"
+    },
+    {
+        "id": "shaik-unisex",
+        "name": "Shaik Opulent Gold Unisex 🌟",
+        "notes": "Narenciye, Çiçeksi notalar, Odunsu notalar",
+        "time": "☀️ Yaz akşamları ve bahar günleri",
+        "occasion": "✨ Özel etkinlikler, romantik buluşmalar",
+        "users": "🧑‍🤝‍🧑 Hem kadınlar hem erkekler",
+        "feeling": "💎 Zarif, büyüleyici ve unisex",
+        "date": "2024-12-08",
+        "age_group": "25-45"
     }
 ]
