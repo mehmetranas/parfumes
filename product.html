@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parfüm Detayları</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .label {
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            padding: 20px 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: 20px auto;
+            position: relative;
+        }
+        .badge {
+            background-color: #ffebcd;
+            color: #333333;
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 5px 10px;
+            border-radius: 50px;
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .perfume-name {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #333333;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="perfume-container" class="label"></div>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const perfumeId = urlParams.get('id');
+
+        fetch('perfumes.json')
+            .then(response => response.json())
+            .then(perfumes => {
+                const perfume = perfumes.find(p => p.id === perfumeId);
+                if (perfume) {
+                    const container = document.getElementById('perfume-container');
+                    container.innerHTML = `
+                        <div class="badge">${perfume.date}</div>
+                        <h1 class="perfume-name">${perfume.name}</h1>
+                        <p><strong>Notalar:</strong> ${perfume.notes}</p>
+                        <p><strong>Zaman:</strong> ${perfume.time}</p>
+                        <p><strong>Etkinlik:</strong> ${perfume.occasion}</p>
+                        <p><strong>Kimler:</strong> ${perfume.users}</p>
+                        <p><strong>Yaş:</strong> ${perfume.age}</p>
+                        <p><strong>Hissi:</strong> ${perfume.feeling}</p>
+                    `;
+                } else {
+                    document.body.innerHTML = '<p>Ürün bulunamadı!</p>';
+                }
+            })
+            .catch(error => console.error('Detay yüklenemedi:', error));
+    </script>
+</body>
+</html>
