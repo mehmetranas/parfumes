@@ -74,6 +74,24 @@
             color: #888;
             font-size: 1.2em;
         }
+
+        .show-all-btn {
+            display: inline-block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1em;
+            border-radius: 5px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s;
+        }
+
+        .show-all-btn:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
@@ -107,6 +125,13 @@
                 const perfume = perfumes.find(p => p.id === perfumeId);
                 if (perfume) {
                     renderCard(perfume);
+
+                    // Show All Button
+                    const showAllBtn = document.createElement('a');
+                    showAllBtn.href = './';
+                    showAllBtn.className = 'show-all-btn';
+                    showAllBtn.textContent = 'Tüm Parfümleri Gör';
+                    container.appendChild(showAllBtn);
                 } else {
                     container.innerHTML = '<p class="no-results">Parfüm bulunamadı.</p>';
                 }
