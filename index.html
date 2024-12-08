@@ -24,6 +24,7 @@
             padding: 25px;
             box-sizing: border-box;
             transition: transform 0.3s;
+            position: relative;
         }
 
         .card:hover {
@@ -55,6 +56,18 @@
             margin-right: 8px;
         }
 
+        .card .date {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: #ffefef;
+            color: #d9534f;
+            font-size: 0.9em;
+            padding: 5px 10px;
+            border-radius: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
         .no-results {
             text-align: center;
             margin-top: 50px;
@@ -69,37 +82,38 @@
 
 <script>
     fetch('./perfumes.json')
-    .then(response => response.json())
-    .then(perfumes => {
-        const params = new URLSearchParams(window.location.search);
-    const perfumeId = params.get('id');
-    const container = document.getElementById('perfume-container');
+        .then(response => response.json())
+        .then(perfumes => {
+            const params = new URLSearchParams(window.location.search);
+            const perfumeId = params.get('id');
+            const container = document.getElementById('perfume-container');
 
-    const renderCard = (perfume) => {
-        const card = document.createElement('div');
-        card.className = 'card';
-        card.innerHTML = `
-            <h2>${perfume.name}</h2>
-            <p class="notes"><span class="emoji">📝</span>${perfume.notes}</p>
-            <p><span class="emoji">⏰</span><strong>Kullanım Zamanı:</strong> ${perfume.time}</p>
-            <p><span class="emoji">🎯</span><strong>Durum:</strong> ${perfume.occasion}</p>
-            <p><span class="emoji">👥</span><strong>Kullanıcılar:</strong> ${perfume.users}</p>
-            <p><span class="emoji">🌟</span><strong>Hissiyat:</strong> ${perfume.feeling}</p>
-        `;
-        container.appendChild(card);
-    };
+            const renderCard = (perfume) => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <span class="date">${perfume.date}</span>
+                    <h2>${perfume.name}</h2>
+                    <p class="notes"><span class="emoji">📝</span>${perfume.notes}</p>
+                    <p><span class="emoji">⏰</span><strong>Kullanım Zamanı:</strong> ${perfume.time}</p>
+                    <p><span class="emoji">🎯</span><strong>Durum:</strong> ${perfume.occasion}</p>
+                    <p><span class="emoji">👥</span><strong>Kullanıcılar:</strong> ${perfume.users}</p>
+                    <p><span class="emoji">🌟</span><strong>Hissiyat:</strong> ${perfume.feeling}</p>
+                `;
+                container.appendChild(card);
+            };
 
-    if (perfumeId) {
-        const perfume = perfumes.find(p => p.id === perfumeId);
-        if (perfume) {
-            renderCard(perfume);
-        } else {
-            container.innerHTML = '<p class="no-results">Parfüm bulunamadı.</p>';
-        }
-    } else {
-        perfumes.forEach(renderCard);
-    }
-    });
+            if (perfumeId) {
+                const perfume = perfumes.find(p => p.id === perfumeId);
+                if (perfume) {
+                    renderCard(perfume);
+                } else {
+                    container.innerHTML = '<p class="no-results">Parfüm bulunamadı.</p>';
+                }
+            } else {
+                perfumes.forEach(renderCard);
+            }
+        });
 </script>
 
 </body>
