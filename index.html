@@ -68,9 +68,10 @@
 <div id="perfume-container"></div>
 
 <script>
-    import perfumes from './perfumes.json';
-
-    const params = new URLSearchParams(window.location.search);
+    fetch('./perfumes.json')
+    .then(response => response.json())
+    .then(perfumes => {
+        const params = new URLSearchParams(window.location.search);
     const perfumeId = params.get('id');
     const container = document.getElementById('perfume-container');
 
@@ -98,6 +99,7 @@
     } else {
         perfumes.forEach(renderCard);
     }
+    });
 </script>
 
 </body>
