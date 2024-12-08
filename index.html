@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parfüm Listesi</title>
+    <title>Parfümler</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <style>
         body {
@@ -12,58 +12,63 @@
             margin: 0;
             padding: 20px;
         }
-        .label {
+        .product-list {
+            display: grid;
+            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+        .product-card {
             background: #ffffff;
             border: 1px solid #e0e0e0;
-            padding: 20px 25px;
+            padding: 15px;
             border-radius: 10px;
+            text-align: center;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
-            margin: 20px auto;
-            position: relative;
         }
-        .badge {
-            background-color: #ffebcd;
-            color: #333333;
+        .product-card h2 {
+            font-size: 1.4rem;
+            margin: 10px 0;
+        }
+        .product-card p {
+            font-size: 0.9rem;
+            color: #555;
+        }
+        .product-card button {
+            background-color: #b03e3e;
+            color: #ffffff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
             font-size: 0.9rem;
             font-weight: 600;
-            padding: 5px 10px;
-            border-radius: 50px;
-            position: absolute;
-            top: -10px;
-            left: 10px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            margin-top: 10px;
         }
-        .perfume-name {
-            font-size: 1.8rem;
-            font-weight: 600;
-            color: #333333;
-            margin-bottom: 15px;
-            text-align: center;
-        }
-        .icon-text {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 10px;
-        }
-        .icon {
-            font-size: 1.5rem;
-        }
-        .text {
-            font-size: 1rem;
-            color: #555555;
-            line-height: 1.5;
-        }
-        hr {
-            border: none;
-            border-top: 1px solid #e0e0e0;
-            margin: 10px 0;
+        .product-card button:hover {
+            background-color: #8e3232;
         }
     </style>
 </head>
 <body>
-    <div id="perfumes-container"></div>
-    <script src="script.js"></script>
+    <h1>Parfümler</h1>
+    <div id="product-list" class="product-list"></div>
+    <script>
+        fetch('perfumes.json')
+            .then(response => response.json())
+            .then(perfumes => {
+                const listContainer = document.getElementById('product-list');
+                perfumes.forEach(perfume => {
+                    const card = document.createElement('div');
+                    card.classList.add('product-card');
+                    card.innerHTML = `
+                        <h2>${perfume.name}</h2>
+                        <p>${perfume.notes.split(",").slice(0, 2).join(", ")}...</p>
+                        <button onclick="location.href='product.html?id=${perfume.id}'">Detayları Gör</button>
+                    `;
+                    listContainer.appendChild(card);
+                });
+            })
+            .catch(error => console.error('Ürünler yüklenemedi:', error));
+    </script>
 </body>
 </html>
