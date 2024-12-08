@@ -1,5 +1,6 @@
 [
     {
+        "id": "lost-cherry",
         "name": "Lost Cherry",
         "notes": "Ekşi Vişne, Badem Likörü, Yasemin Sambac, Sandal Ağacı, Tonka Fasulyesi, Kakao",
         "time": "Serin sonbahar ve kış akşamları",
@@ -10,6 +11,7 @@
         "date": "08.12.2024"
     },
     {
+        "id": "kirke",
         "name": "Kirke",
         "notes": "Şeftali, Mango, Kavun, Kırmızı Meyveler, Lilyum, Paçuli, Sandal Ağacı, Misk",
         "time": "Yaz akşamları, bahar günleri",
