@@ -17,7 +17,7 @@
             gap: 20px;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         }
-        .product-card {
+        .product-card, .label {
             background: #ffffff;
             border: 1px solid #e0e0e0;
             padding: 15px;
@@ -25,11 +25,11 @@
             text-align: center;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
-        .product-card h2 {
+        .product-card h2, .perfume-name {
             font-size: 1.4rem;
             margin: 10px 0;
         }
-        .product-card p {
+        .product-card p, .text {
             font-size: 0.9rem;
             color: #555;
         }
@@ -47,28 +47,71 @@
         .product-card button:hover {
             background-color: #8e3232;
         }
+        .badge {
+            background-color: #ffebcd;
+            color: #333333;
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 5px 10px;
+            border-radius: 50px;
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
     </style>
 </head>
 <body>
-    <h1>Parfümler</h1>
-    <div id="product-list" class="product-list"></div>
+    <h1 id="page-title">Parfümler</h1>
+    <div id="content-container"></div>
     <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const perfumeId = urlParams.get('id');
+
         fetch('perfumes.json')
             .then(response => response.json())
             .then(perfumes => {
-                const listContainer = document.getElementById('product-list');
-                perfumes.forEach(perfume => {
-                    const card = document.createElement('div');
-                    card.classList.add('product-card');
-                    card.innerHTML = `
-                        <h2>${perfume.name}</h2>
-                        <p>${perfume.notes.split(",").slice(0, 2).join(", ")}...</p>
-                        <button onclick="location.href='product.html?id=${perfume.id}'">Detayları Gör</button>
-                    `;
-                    listContainer.appendChild(card);
-                });
+                const container = document.getElementById('content-container');
+                const pageTitle = document.getElementById('page-title');
+
+                if (perfumeId) {
+                    // Eğer ID varsa, sadece ilgili ürünü göster
+                    const perfume = perfumes.find(p => p.id === perfumeId);
+                    if (perfume) {
+                        pageTitle.textContent = perfume.name;
+                        container.innerHTML = `
+                            <div class="label">
+                                <div class="badge">${perfume.date}</div>
+                                <h2 class="perfume-name">${perfume.name}</h2>
+                                <p><strong>Notalar:</strong> ${perfume.notes}</p>
+                                <p><strong>Zaman:</strong> ${perfume.time}</p>
+                                <p><strong>Etkinlik:</strong> ${perfume.occasion}</p>
+                                <p><strong>Kimler:</strong> ${perfume.users}</p>
+                                <p><strong>Yaş:</strong> ${perfume.age}</p>
+                                <p><strong>Hissi:</strong> ${perfume.feeling}</p>
+                                <button onclick="location.href='index.html'">Tüm Parfümleri Gör</button>
+                            </div>
+                        `;
+                    } else {
+                        container.innerHTML = '<p>Ürün bulunamadı!</p>';
+                    }
+                } else {
+                    // Eğer ID yoksa, tüm ürünleri listele
+                    pageTitle.textContent = "Parfümler";
+                    container.classList.add('product-list');
+                    perfumes.forEach(perfume => {
+                        const card = document.createElement('div');
+                        card.classList.add('product-card');
+                        card.innerHTML = `
+                            <h2>${perfume.name}</h2>
+                            <p>${perfume.notes.split(",").slice(0, 2).join(", ")}...</p>
+                            <button onclick="location.href='index.html?id=${perfume.id}'">Detayları Gör</button>
+                        `;
+                        container.appendChild(card);
+                    });
+                }
             })
-            .catch(error => console.error('Ürünler yüklenemedi:', error));
+            .catch(error => console.error('JSON yüklenemedi:', error));
     </script>
 </body>
 </html>
