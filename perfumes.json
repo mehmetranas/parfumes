@@ -7,7 +7,8 @@
         "occasion": "✨ Özel davetler, romantik buluşmalar",
         "users": "🧑‍🤝‍🧑 Hem kadınlar hem erkekler",
         "feeling": "❤️ Baştan çıkarıcı, zarif ve sofistike",
-        "date": "2024-12-01"
+        "date": "2024-12-01",
+        "age_group": "25-40"
     },
     {
         "id": "kirke",
@@ -17,6 +18,7 @@
         "occasion": "🌴 Davetler, Sahil buluşmaları, Romantik akşam yemekleri",
         "users": "🧑‍🤝‍🧑 Hem kadınlar hem erkekler",
         "feeling": "💃 Enerji dolu, tropikal ve zarif",
-        "date": "2024-12-01"
+        "date": "2024-12-01",
+        "age_group": "20-35"
     }
 ]
