@@ -25,6 +25,7 @@
             box-sizing: border-box;
             transition: transform 0.3s;
             position: relative;
+            overflow: hidden;
         }
 
         .card:hover {
@@ -58,12 +59,23 @@
 
         .card .date {
             position: absolute;
-            top: 15px;
-            right: 15px;
-            background-color: #ffefef;
-            color: #d9534f;
+            top: 10px;
+            right: 10px;
+            background-color: #f2f2f2;
+            color: #555;
+            font-size: 0.9em;
+            padding: 5px 15px;
+            border-radius: 30px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .card .age-group {
+            display: inline-block;
+            background-color: #dff0d8;
+            color: #3c763d;
             font-size: 0.9em;
             padding: 5px 10px;
+            margin-top: 10px;
             border-radius: 20px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
@@ -117,6 +129,7 @@
                     <p><span class="emoji">🎯</span><strong>Durum:</strong> ${perfume.occasion}</p>
                     <p><span class="emoji">👥</span><strong>Kullanıcılar:</strong> ${perfume.users}</p>
                     <p><span class="emoji">🌟</span><strong>Hissiyat:</strong> ${perfume.feeling}</p>
+                    <span class="age-group">Yaş Grubu: ${perfume.age_group}</span>
                 `;
                 container.appendChild(card);
             };
