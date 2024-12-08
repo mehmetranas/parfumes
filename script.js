@@ -1,5 +1,5 @@
 // JSON dosyasını yükle ve içeriği render et
-fetch('perfumes.json')
+fetch('./perfumes.json')
     .then(response => response.json())
     .then(perfumes => {
         const container = document.getElementById('perfumes-container');
