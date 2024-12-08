@@ -3,137 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parfümler</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400&display=swap" rel="stylesheet">
+    <title>Perfumes</title>
     <style>
         body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f9f9f9;
+            font-family: 'Arial', sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            background-color: #f9f9f9;
             display: flex;
-            flex-direction: column;
-            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
         }
-        #content-container {
-            display: grid;
-            gap: 20px;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            max-width: 1200px;
-            width: 100%;
+
+        .card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+            width: 320px;
+            margin: 20px;
+            padding: 25px;
+            box-sizing: border-box;
+            transition: transform 0.3s;
         }
-        .label, .product-card {
-            background: #fff9f4;
-            border: 2px dashed #d4a5a5;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            max-width: 400px;
-            margin: auto;
+
+        .card:hover {
+            transform: scale(1.05);
         }
-        .label h1, .product-card h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            color: #b03e3e;
-            margin-bottom: 15px;
-            font-weight: 700;
-            letter-spacing: 1px;
+
+        .card h2 {
+            margin: 0;
+            font-size: 1.8em;
+            color: #333;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
         }
-        .label h2, .product-card p {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
-            color: #6e4c4c;
+
+        .card p {
             margin: 10px 0;
-            text-decoration: underline;
-            font-weight: 700;
-            letter-spacing: 0.5px;
+            color: #555;
+            line-height: 1.6;
         }
-        .label p, .product-card p {
-            font-family: 'Roboto', sans-serif;
-            font-size: 1rem;
-            color: #4a4a4a;
-            margin: 5px 0;
-            line-height: 1.5;
-            font-weight: 400;
+
+        .card .notes {
+            font-style: italic;
+            color: #888;
+            margin-bottom: 15px;
         }
-        .label button, .product-card button {
-            background-color: #b03e3e;
-            color: #ffffff;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 15px;
+
+        .card .emoji {
+            font-size: 1.2em;
+            margin-right: 8px;
         }
-        .label button:hover, .product-card button:hover {
-            background-color: #8e3232;
+
+        .no-results {
+            text-align: center;
+            margin-top: 50px;
+            color: #888;
+            font-size: 1.2em;
         }
     </style>
 </head>
 <body>
-    <h1 id="page-title">Parfümler</h1>
-    <div id="content-container"></div>
-    <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const perfumeId = urlParams.get('id');
 
-        fetch('perfumes.json')
-            .then(response => response.json())
-            .then(perfumes => {
-                const container = document.getElementById('content-container');
-                const pageTitle = document.getElementById('page-title');
+<div id="perfume-container"></div>
 
-                if (perfumeId) {
-                    const perfume = perfumes.find(p => p.id === perfumeId);
-                    if (perfume) {
-                        pageTitle.textContent = perfume.name;
-                        container.innerHTML = `
-                            <div class="label">
-                                <h1>${perfume.name}</h1>
-                                <div class="section">
-                                    <h2>Notalar:</h2>
-                                    <p>${perfume.notes}</p>
-                                </div>
-                                <div class="section">
-                                    <h2>Ne zaman kullanılır:</h2>
-                                    <p>${perfume.time}</p>
-                                </div>
-                                <div class="section">
-                                    <h2>Ne tür etkinlikte kullanılır:</h2>
-                                    <p>${perfume.occasion}</p>
-                                </div>
-                                <div class="section">
-                                    <h2>Kimler kullanabilir:</h2>
-                                    <p>${perfume.users}</p>
-                                </div>
-                                <div class="section">
-                                    <h2>Ne hissettirir:</h2>
-                                    <p>${perfume.feeling}</p>
-                                </div>
-                                <button onclick="location.href='index.html'">Tüm Parfümleri Gör</button>
-                            </div>
-                        `;
-                    } else {
-                        container.innerHTML = '<p>Ürün bulunamadı!</p>';
-                    }
-                } else {
-                    pageTitle.textContent = "Parfümler";
-                    perfumes.forEach(perfume => {
-                        const card = document.createElement('div');
-                        card.classList.add('product-card');
-                        card.innerHTML = `
-                            <h2>${perfume.name}</h2>
-                            <p>${perfume.notes.split(",").slice(0, 2).join(", ")}...</p>
-                            <button onclick="location.href='index.html?id=${perfume.id}'">Detayları Gör</button>
-                        `;
-                        container.appendChild(card);
-                    });
-                }
-            })
-            .catch(error => console.error('JSON yüklenemedi:', error));
-    </script>
+<script>
+    import perfumes from './perfumes.json';
+
+    const params = new URLSearchParams(window.location.search);
+    const perfumeId = params.get('id');
+    const container = document.getElementById('perfume-container');
+
+    const renderCard = (perfume) => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+            <h2>${perfume.name}</h2>
+            <p class="notes"><span class="emoji">📝</span>${perfume.notes}</p>
+            <p><span class="emoji">⏰</span><strong>Kullanım Zamanı:</strong> ${perfume.time}</p>
+            <p><span class="emoji">🎯</span><strong>Durum:</strong> ${perfume.occasion}</p>
+            <p><span class="emoji">👥</span><strong>Kullanıcılar:</strong> ${perfume.users}</p>
+            <p><span class="emoji">🌟</span><strong>Hissiyat:</strong> ${perfume.feeling}</p>
+        `;
+        container.appendChild(card);
+    };
+
+    if (perfumeId) {
+        const perfume = perfumes.find(p => p.id === perfumeId);
+        if (perfume) {
+            renderCard(perfume);
+        } else {
+            container.innerHTML = '<p class="no-results">Parfüm bulunamadı.</p>';
+        }
+    } else {
+        perfumes.forEach(renderCard);
+    }
+</script>
+
 </body>
 </html>
