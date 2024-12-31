@@ -22,7 +22,7 @@
         "age_group": "20-35"
     },
     {
-        "id": "shaik-classic",
+        "id": "shaik",
         "name": "Opulent Shaik Classic No. 77 🕴️",
         "notes": "Bergamot, Fesleğen, Lavanta, Limon, Elma, Karanfil, Tarçın, Laden Çiçeği, Meşe Likeni, Sedir, Tibet Misk Geyiği, Vanilya",
         "time": "🌆 Serin sonbahar ve kış akşamları",
@@ -44,59 +44,88 @@
         "age_group": "25-45"
     },
     {
-    "id": "y-le-parfum",
-    "name": "Y Le Parfum 🖤",
-    "notes": "Elma, Greyfurt, Zencefil, Adaçayı, Lavanta, Sedir, Vetiver, Kakule",
-    "time": "🌆 Akşam etkinlikleri, serin mevsimler",
-    "occasion": "✨ Özel etkinlikler, gece davetleri",
-    "users": "🧑‍🤝‍🧑 Hem kadınlar hem erkekler",
-    "feeling": "🌟 Şehvetli, modern ve güçlü",
-    "date": "2024-12-08",
-    "age_group": "25-45"
-},
-{
-    "id": "memo-ocean-leather",
-    "name": "Memo Ocean Leather 🌊",
-    "notes": "Mandalina Yağı, Fesleğen, Menekşe, Adaçayı, Elemi Reçinesi, Sedir, Vetiver, Deri, Hindistancevizi",
-    "time": "🌞 Yaz ve bahar günleri",
-    "occasion": "🚤 Deniz gezileri, yaz etkinlikleri",
-    "users": "🧑‍🤝‍🧑 Hem kadınlar hem erkekler",
-    "feeling": "🌊 Ferah, özgür ve sofistike",
-    "date": "2024-12-08",
-    "age_group": "25-50"
-},
-{
-    "id": "mr-barby-man",
-    "name": "MR.BARBY MAN 🕴️",
-    "notes": "Bergamot, Taze Nane, Lavanta, Dağ Kekiği, Itır Çiçeği, Sandal Ağacı, Amber, Sedir",
-    "time": "🌆 İlkbahar, sonbahar ve kış mevsimleri",
-    "occasion": "✨ Günlük kullanım, iş toplantıları",
-    "users": "🧑‍🤝‍🧑 Erkekler",
-    "feeling": "🌟 Hafif, odunsu ve klasik",
-    "date": "2024-12-08",
-    "age_group": "20 ve üzeri"
-},
-{
-    "id": "bloom-jasmin",
-    "name": "Bloom Jasmin 🌸",
-    "notes": "Gardenya, Yeşil notalar, Yasemin, Badem, Meyan kökü, Tonka fasulyesi, Odunsu notalar, Amber, Misk, Paçuli",
-    "time": "🌆 Sonbahar ve kış akşamları",
-    "occasion": "✨ Özel davetler, gece kullanımı",
-    "users": "👩 Kadınlar",
-    "feeling": "🌟 Yoğun, olgun ve sofistike",
-    "date": "2024-12-08",
-    "age_group": "25 ve üzeri"
-},
+        "id": "y-le-parfum",
+        "name": "Y Le Parfum 🖤",
+        "notes": "Elma, Greyfurt, Zencefil, Adaçayı, Lavanta, Sedir, Vetiver, Kakule",
+        "time": "🌆 Akşam etkinlikleri, serin mevsimler",
+        "occasion": "✨ Özel etkinlikler, gece davetleri",
+        "users": "🧑‍🤝‍🧑 Hem kadınlar hem erkekler",
+        "feeling": "🌟 Şehvetli, modern ve güçlü",
+        "date": "2024-12-08",
+        "age_group": "25-45"
+    },
     {
-    "id": "memo-lalibela",
-    "name": "Memo Lalibela 🌺",
-    "notes": "Hindistan cevizi, Orkide, Gül, Yasemin, Paçuli, Laden, Tütün Yaprağı, Buhur, Vanilya",
-    "time": "🌆 Sonbahar ve kış akşamları",
-    "occasion": "✨ Özel davetler, mistik etkinlikler",
-    "users": "🧑‍🤝‍🧑 Hem kadınlar hem erkekler",
-    "feeling": "🌟 Gizemli, zarif ve sofistike",
-    "date": "2024-12-08",
-    "age_group": "25-50"
-}
-
+        "id": "memo-ocean-leather",
+        "name": "Memo Ocean Leather 🌊",
+        "notes": "Mandalina Yağı, Fesleğen, Menekşe, Adaçayı, Elemi Reçinesi, Sedir, Vetiver, Deri, Hindistancevizi",
+        "time": "🌞 Yaz ve bahar günleri",
+        "occasion": "🚤 Deniz gezileri, yaz etkinlikleri",
+        "users": "🧑‍🤝‍🧑 Hem kadınlar hem erkekler",
+        "feeling": "🌊 Ferah, özgür ve sofistike",
+        "date": "2024-12-08",
+        "age_group": "25-50"
+    },
+    {
+        "id": "mr-barby-man",
+        "name": "MR.BARBY MAN 🕴️",
+        "notes": "Bergamot, Taze Nane, Lavanta, Dağ Kekiği, Itır Çiçeği, Sandal Ağacı, Amber, Sedir",
+        "time": "🌆 İlkbahar, sonbahar ve kış mevsimleri",
+        "occasion": "✨ Günlük kullanım, iş toplantıları",
+        "users": "🧑‍🤝‍🧑 Erkekler",
+        "feeling": "🌟 Hafif, odunsu ve klasik",
+        "date": "2024-12-08",
+        "age_group": "20 ve üzeri"
+    },
+    {
+        "id": "bloom-jasmin",
+        "name": "Bloom Jasmin 🌸",
+        "notes": "Gardenya, Yeşil notalar, Yasemin, Badem, Meyan kökü, Tonka fasulyesi, Odunsu notalar, Amber, Misk, Paçuli",
+        "time": "🌆 Sonbahar ve kış akşamları",
+        "occasion": "✨ Özel davetler, gece kullanımı",
+        "users": "👩 Kadınlar",
+        "feeling": "🌟 Yoğun, olgun ve sofistike",
+        "date": "2024-12-08",
+        "age_group": "25 ve üzeri"
+    },
+    {
+        "id": "memo-lalibela",
+        "name": "Memo Lalibela 🌺",
+        "notes": "Hindistan cevizi, Orkide, Gül, Yasemin, Paçuli, Laden, Tütün Yaprağı, Buhur, Vanilya",
+        "time": "🌆 Sonbahar ve kış akşamları",
+        "occasion": "✨ Özel davetler, mistik etkinlikler",
+        "users": "🧑‍🤝‍🧑 Hem kadınlar hem erkekler",
+        "feeling": "🌟 Gizemli, zarif ve sofistike",
+        "date": "2024-12-08",
+        "age_group": "25-50"
+    },
+    {
+        "id": "versace-eros",
+        "name": "Versace Eros 💚",
+        "notes": "Nane, Yeşil Elma, Limon, Tonka Fasulyesi, Vanilya, Sedir, Amber, Paçuli",
+        "time": "🌞 Tüm yıl, özellikle gece",
+        "occasion": "🎉 Parti, gece etkinlikleri, özel davetler",
+        "users": "🧑‍🤝‍🧑 Hem kadınlar hem erkekler",
+        "feeling": "💚 Tutkulu, enerjik ve çekici",
+        "age_group": "20-40"
+    },
+    {
+        "id": "memo-lalibela",
+        "name": "Memo Lalibela 🌿",
+        "notes": "Yasemin, Sandal Ağacı, Bergamot, Ylang Ylang, Limon, Zambak, Amber, Oud",
+        "time": "🌞 Tüm yıl, özellikle gece",
+        "occasion": "🌙 Akşam yemekleri, özel davetler",
+        "users": "🧑‍🤝‍🧑 Hem kadınlar hem erkekler",
+        "feeling": "🌿 Gizemli, lüks ve sofistike",
+        "age_group": "30-50"
+    },
+    {
+        "id": "telea",
+        "name": "Trienzi Telea 🌸",
+        "notes": "Limon, Yasemin, Gül, Paçuli, Sandal Ağacı, Vanilya, Amber, Misk",
+        "time": "🌞 İlkbahar ve yaz günleri",
+        "occasion": "🍷 Akşam gezmeleri, özel buluşmalar",
+        "users": "🧑‍🤝‍🧑 Hem kadınlar hem erkekler",
+        "feeling": "🌸 Zarif, taze ve çekici",
+        "age_group": "25-45"
+    }
 ]
