@@ -1,150 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Perfumes</title>
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f9f9f9;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
+      body {
+        font-family: "Arial", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f9f9f9;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
 
-        .card {
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
-            width: 320px;
-            margin: 20px;
-            padding: 25px;
-            box-sizing: border-box;
-            transition: transform 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
+      .card {
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+        width: 320px;
+        margin: 20px;
+        padding: 25px;
+        box-sizing: border-box;
+        transition: transform 0.3s;
+        position: relative;
+        overflow: hidden;
+      }
 
-        .card:hover {
-            transform: scale(1.05);
-        }
+      .card:hover {
+        transform: scale(1.05);
+      }
 
-        .card h2 {
-            margin: 0;
-            font-size: 1.8em;
-            color: #333;
-            border-bottom: 2px solid #ddd;
-            padding-bottom: 10px;
-        }
+      .card h2 {
+        margin: 0;
+        font-size: 1.8em;
+        color: #333;
+        border-bottom: 2px solid #ddd;
+        padding-bottom: 10px;
+      }
 
-        .card p {
-            margin: 10px 0;
-            color: #555;
-            line-height: 1.6;
-        }
+      .card p {
+        margin: 10px 0;
+        color: #555;
+        line-height: 1.6;
+      }
 
-        .card .notes {
-            font-style: italic;
-            color: #888;
-            margin-bottom: 15px;
-        }
+      .card .notes {
+        font-style: italic;
+        color: #888;
+        margin-bottom: 15px;
+      }
 
-        .card .emoji {
-            font-size: 1.2em;
-            margin-right: 8px;
-        }
+      .card .emoji {
+        font-size: 1.2em;
+        margin-right: 8px;
+      }
 
-        .card .date {
-            position: absolute;
-            top: 0;
-            right: 0;
-            background-color: #d9534f;
-            color: #fff;
-            font-size: 0.8em;
-            padding: 5px 10px;
-            border-bottom-left-radius: 12px;
-            text-align: center;
-            font-weight: bold;
-        }
+      .card .date {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: #d9534f;
+        color: #fff;
+        font-size: 0.8em;
+        padding: 5px 10px;
+        border-bottom-left-radius: 12px;
+        text-align: center;
+        font-weight: bold;
+      }
 
-        .no-results {
-            text-align: center;
-            margin-top: 50px;
-            color: #888;
-            font-size: 1.2em;
-        }
+      .no-results {
+        text-align: center;
+        margin-top: 50px;
+        color: #888;
+        font-size: 1.2em;
+      }
 
-        .show-all-btn {
-            display: inline-block;
-            margin: 20px auto;
-            padding: 8px 16px;
-            background-color: #f0f0f0;
-            color: #333;
-            text-decoration: none;
-            font-size: 0.9em;
-            border-radius: 30px;
-            text-align: center;
-            border: 1px solid #ddd;
-            transition: background-color 0.2s, box-shadow 0.2s;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
+      .show-all-btn {
+        display: inline-block;
+        margin: 20px auto;
+        padding: 8px 16px;
+        background-color: #f0f0f0;
+        color: #333;
+        text-decoration: none;
+        font-size: 0.9em;
+        border-radius: 30px;
+        text-align: center;
+        border: 1px solid #ddd;
+        transition: background-color 0.2s, box-shadow 0.2s;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
 
-        .show-all-btn:hover {
-            background-color: #e0e0e0;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-        }
+      .show-all-btn:hover {
+        background-color: #e0e0e0;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
+    <div id="perfume-container"></div>
 
-<div id="perfume-container"></div>
+    <script>
+      fetch("./perfumes.json")
+        .then((response) => response.json())
+        .then((perfumes) => {
+          // Create a URLSearchParams object to parse the query parameters from the URL
+          const params = new URLSearchParams(window.location.search);
+          // Get the 'id' parameter from the URL, ensuring to handle accidental multiple parameters
+          const perfumeId = params.get("id")
+            ? params.get("id").split("?")[0]
+            : null;
+          const container = document.getElementById("perfume-container");
 
-<script>
-    fetch('./perfumes.json')
-        .then(response => response.json())
-        .then(perfumes => {
-            const params = new URLSearchParams(window.location.search);
-            const perfumeId = params.get('id');
-            const container = document.getElementById('perfume-container');
+          const renderCard = (perfume) => {
+            // Create a container for the badge
+            const badgeContainer = document.createElement("div");
+            badgeContainer.style.display = "flex";
+            badgeContainer.style.justifyContent = "center";
+            badgeContainer.style.marginBottom = "20px"; // Add some space below the badge
+            badgeContainer.style.marginTop = "20px"; // Add top margin for spacing
 
-            const renderCard = (perfume) => {
-                const card = document.createElement('div');
-                card.className = 'card';
-                card.innerHTML = `
-                    <span class="date">${perfume.date}</span>
-                    <h2>${perfume.name}</h2>
-                    <p class="notes"><span class="emoji">📝</span>${perfume.notes}</p>
-                    <p><span class="emoji">⏰</span><strong>Kullanım Zamanı:</strong> ${perfume.time}</p>
-                    <p><span class="emoji">🎯</span><strong>Durum:</strong> ${perfume.occasion}</p>
-                    <p><span class="emoji">👥</span><strong>Kullanıcılar:</strong> ${perfume.users}</p>
-                    <p><span class="emoji">🌟</span><strong>Hissiyat:</strong> ${perfume.feeling}</p>
-                    <p><span class="emoji">👶</span><strong>Yaş Grubu:</strong> ${perfume.age_group}</p>
+            // Create the New Year badge
+            const badge = document.createElement("div");
+            badge.innerHTML = `
+                    <svg width="320" height="150" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#ff7e5f; stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#feb47b; stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <rect width="100%" height="100%" rx="20" ry="20" fill="url(#grad1)" />
+                        <g transform="translate(20, 20)">
+                            <text x="50%" y="30%" alignment-baseline="middle" text-anchor="middle" fill="white" font-size="24" font-weight="bold">YMutlu Yıllar! 🎉</text>
+                            <text x="50%" y="70%" alignment-baseline="middle" text-anchor="middle" fill="white" font-size="14" font-style="italic">Parfüm gibi mis gibi bir yıl olsun! 💖</text>
+                        </g>
+                    </svg>
                 `;
-                container.appendChild(card);
-            };
 
-            if (perfumeId) {
-                const perfume = perfumes.find(p => p.id === perfumeId);
-                if (perfume) {
-                    renderCard(perfume);
+            // Append the badge to the badge container
+            badgeContainer.appendChild(badge);
 
-                    // Show All Button
-                    const showAllBtn = document.createElement('a');
-                    showAllBtn.href = './';
-                    showAllBtn.className = 'show-all-btn';
-                    showAllBtn.textContent = 'Tüm Parfümleri Gör';
-                    container.appendChild(showAllBtn);
-                } else {
-                    container.innerHTML = '<p class="no-results">Parfüm bulunamadı.</p>';
-                }
+            // Create the card
+            const card = document.createElement("div");
+            card.className = "card";
+            card.innerHTML = `
+                    ${
+                      perfume.date
+                        ? `<span class="date">${perfume.date}</span>`
+                        : ""
+                    }
+                    <h2>${perfume.name}</h2>
+                    <p class="notes"><span class="emoji">📝</span>${
+                      perfume.notes
+                    }</p>
+                    <p><span class="emoji">⏰</span><strong>Kullanım Zamanı:</strong> ${
+                      perfume.time
+                    }</p>
+                    <p><span class="emoji">🎯</span><strong>Durum:</strong> ${
+                      perfume.occasion
+                    }</p>
+                    <p><span class="emoji">👥</span><strong>Kullanıcılar:</strong> ${
+                      perfume.users
+                    }</p>
+                    <p><span class="emoji">🌟</span><strong>Hissiyat:</strong> ${
+                      perfume.feeling
+                    }</p>
+                    <p><span class="emoji">👶</span><strong>Yaş Grubu:</strong> ${
+                      perfume.age_group
+                    }</p>
+                `;
+
+            // Append the badge container and card to the main container
+            container.appendChild(badgeContainer);
+            container.appendChild(card);
+          };
+
+          if (perfumeId) {
+            const perfume = perfumes.find(
+              (p) => p.id.toLowerCase() === perfumeId.toLowerCase()
+            );
+            if (perfume) {
+              renderCard(perfume);
+
+              // Show All Button
+              const showAllBtn = document.createElement("a");
+              showAllBtn.href = "./";
+              showAllBtn.className = "show-all-btn";
+              showAllBtn.textContent = "Tüm Parfümleri Gör";
+              container.appendChild(showAllBtn);
             } else {
-                perfumes.forEach(renderCard);
+              container.innerHTML =
+                '<p class="no-results">Parfüm bulunamadı.</p>';
             }
+          } else {
+            perfumes.forEach(renderCard);
+          }
         });
-</script>
-
-</body>
+    </script>
+  </body>
 </html>
